@@ -1,0 +1,59 @@
+openapi: 3.0.1
+info:
+  version: 1.0.0
+  title: CardCostApiDocumentation
+  description: Documentation
+  contact: { }
+
+servers:
+  - url: //localhost:8080/
+
+paths:
+  /payment-cards-cost:
+    post:
+      requestBody:
+        description: The card number to calculate the cost
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CardCostRequest'
+      responses:
+        201:
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CardCostResponse'
+        401:
+          description: Unauthorized
+          content: {}
+        403:
+          description: Forbidden
+          content: {}
+        404:
+          description: Not Found
+          content: {}
+components:
+  schemas:
+    CardCostRequest:
+      title: CardCostRequest
+      type: object
+      properties:
+        cardNumber:
+          type: string
+          nullable: false
+    CardCostResponse:
+      title: CardCostResponse
+      type: object
+      properties:
+        card:
+          $ref: '#/components/schemas/CardDto'
+    CardDto:
+      title: CardDto
+      type: object
+      properties:
+        country:
+          type: string
+        cost:
+          type: number
