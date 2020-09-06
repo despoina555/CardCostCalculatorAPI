@@ -1,6 +1,17 @@
 ## Summary
 The Card cost calculator API is a case study of implementing an external API Integration
 
+Based on card number, using the first 6 digits of a payment card number (credit cards, debit cards, etc.)
+identify the institution that issued the card to the card holder and calculate the cost.
+
+Clearing cost matrix:
+
+Issuing Country,  Cost (USD)
+- US , $5
+- GR , $15 
+- Others , $10
+
+
 ## Tools that I used:
 - h2 in memory database
 - openapi spec , to generate and  document the API (thanks openapi && swagger <3 )
