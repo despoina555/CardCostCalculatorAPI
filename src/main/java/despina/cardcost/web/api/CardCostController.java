@@ -1,6 +1,7 @@
 package despina.cardcost.web.api;
 
 import despina.cardcost.service.CardCostService;
+import lombok.SneakyThrows;
 import org.openapitools.client.model.CardCostRequest;
 import org.openapitools.client.model.CardCostResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,7 @@ public class CardCostController {
     private CardCostService cardCostService;
 
 
+    @SneakyThrows
     @PostMapping("/payment-cards-cost")
     public ResponseEntity<CardCostResponse> handle(@RequestBody CardCostRequest cardCostRequest ){
         CardCostResponse cardCostResponse = new CardCostResponse();

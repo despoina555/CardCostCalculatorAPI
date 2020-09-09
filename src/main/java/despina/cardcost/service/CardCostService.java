@@ -1,7 +1,7 @@
 package despina.cardcost.service;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import despina.cardcost.exception.InvalidDataException;
 import despina.cardcost.model.entity.Card;
 import despina.cardcost.model.entity.CardDetailsPayload;
 import despina.cardcost.repository.CardRepository;
@@ -24,7 +24,7 @@ public class CardCostService {
     private ObjectMapper mapper;
 
     @Transactional
-    public CardDto calculateCardCost(String cardNumber) {
+    public CardDto calculateCardCost(String cardNumber) throws InvalidDataException {
 
         Card card = new Card();
         card.setCardNumber(cardNumber);
@@ -33,11 +33,11 @@ public class CardCostService {
             card= cardRepository.findByCardNumber(cardNumber).get();
         }else{
             try {
-                CardDetailsPayload  obj = mapper.readValue(BinlistProvider.requestCardData(cardNumber), CardDetailsPayload.class);
+                CardDetailsPayload obj = mapper.readValue(BinlistProvider.requestCardData(cardNumber), CardDetailsPayload.class);
                 performCostCalculation(obj, card);
                 cardRepository.save(card);
-            } catch (JsonProcessingException e) {
-                e.printStackTrace();
+            } catch (Exception e) {
+                throw new InvalidDataException();
             }
         }
 

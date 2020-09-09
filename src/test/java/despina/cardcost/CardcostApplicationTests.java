@@ -73,9 +73,13 @@ class CardcostApplicationTests {
     @Test
     public void calculateCostOfInvalidCardNumber() throws Exception {
 
-        //TODO
-       // MockHttpServletResponse result = performPOSTRequest("55667");
-        //assertEquals(404, result.getStatus());
+        MockHttpServletResponse result =    mockMvc.perform(MockMvcRequestBuilders.post("/payment-cards-cost")
+                .content(createCardCostRequestAsJson("55667"))
+                .contentType("application/json"))
+                .andExpect(status().is4xxClientError())
+                .andReturn()
+                .getResponse();
+                 assertEquals(400, result.getStatus());
     }
 
 
