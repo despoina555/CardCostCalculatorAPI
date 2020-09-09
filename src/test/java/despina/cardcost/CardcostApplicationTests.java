@@ -79,7 +79,7 @@ class CardcostApplicationTests {
                 .andExpect(status().is4xxClientError())
                 .andReturn()
                 .getResponse();
-                 assertEquals(400, result.getStatus());
+        assertEquals(400, result.getStatus());
     }
 
 
