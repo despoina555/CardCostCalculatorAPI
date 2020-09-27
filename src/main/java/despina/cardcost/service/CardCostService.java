@@ -28,7 +28,7 @@ public class CardCostService {
 
         Card card = new Card();
         card.setCardNumber(cardNumber);
-
+//todo send only the first 6 digits
         if (cardRepository.findByCardNumber(cardNumber).isPresent()) {
             card= cardRepository.findByCardNumber(cardNumber).get();
         }else{

@@ -33,4 +33,8 @@ or
 http://localhost:8080/swagger-ui.html
 
 
+##Rate-limit API - Bucket4j
+Bucket4j is used  to  control the trafic .
+Configuration to limit an individual user to 
+maximum of 5 requests within a 10 second period.
 

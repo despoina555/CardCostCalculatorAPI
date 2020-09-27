@@ -1,0 +1,17 @@
+bucket4j:
+  enabled: true
+  filters:
+    - cache-name: buckets
+      url: /*
+      rate-limits:
+        - bandwidths:
+            - capacity: 5
+              time: 10
+              unit: seconds
+
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: https://dev-728787.okta.com/oauth2/default
